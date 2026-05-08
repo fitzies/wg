@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Wishing Garden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #f3ece1;
+    --linen: #e7ddca;
+    --cocoa: #6e5a45;
+    --ink: #2e261c;
+    --rule: #d6cab2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bone); }
+  body {
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 80px 6vw;
+  }
+  .wm {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(28px, 3.6vw, 44px);
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .wm em { font-style: italic; font-weight: 400; }
+  .eyebrow {
+    font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--cocoa);
+    margin-bottom: 64px;
+  }
+  ol { list-style: none; text-align: center; }
+  li { margin-bottom: 18px; }
+  li a {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 240ms ease;
+  }
+  li a:hover { border-bottom-color: var(--cocoa); }
+  li .num {
+    display: inline-block;
+    width: 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--cocoa);
+    vertical-align: middle;
+    margin-right: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="wm"><em>Wishing</em>&nbsp;Garden</div>
+  <div class="eyebrow">Homepage Concepts</div>
+  <ol>
+    <li><span class="num">01</span><a href="./a-editorial-soft.html">Editorial Soft</a></li>
+    <li><span class="num">02</span><a href="./b-garden-romantic.html">Garden Romantic</a></li>
+    <li><span class="num">03</span><a href="./c-apothecary-modern.html">Modern Apothecary</a></li>
+    <li><span class="num">04</span><a href="./d-talisman.html">Talisman</a></li>
+    <li><span class="num">05</span><a href="./e-heritage.html">Heritage</a></li>
+  </ol>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Wishing Garden — Modern Apothecary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  /* C — Modern Apothecary. Deep sage banner. Split horizontal nav with
+     wordmark in the centre (categories left + right). 2-image gallery
+     (wide + narrow). Numbered Nº prefixes throughout. */
+  :root {
+    --bone: #efe9dc;
+    --linen: #e3dccb;
+    --cream: #ebe4d2;
+    --cocoa: #4a3a28;
+    --ink: #1f1a14;
+    --kraft: #6b7765;
+    --sage-dark: #2c332a;
+    --rule: #c9bea4;
+    --ann-bg: #2c332a;
+    --ann-fg: #e3dccb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bone); }
+  body { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-weight: 400; line-height: 1.55; font-size: 12.5px; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* Sage-dark banner */
+  .ann { background: var(--ann-bg); color: var(--ann-fg); padding: 9px 24px; height: 36px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; }
+  .ann .left, .ann .right { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; flex: 0 0 220px; opacity: 0.85; }
+  .ann .right { text-align: right; }
+  .ann-stage { flex: 1; height: 18px; position: relative; overflow: hidden; text-align: center; }
+  .ann-msg { position: absolute; inset: 0; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0; animation: annRotate 18s infinite; }
+  .ann-msg:nth-child(1) { animation-delay: 0s; }
+  .ann-msg:nth-child(2) { animation-delay: 6s; }
+  .ann-msg:nth-child(3) { animation-delay: 12s; }
+  @keyframes annRotate { 0%, 28% { opacity: 1; transform: translateY(0); } 33%, 95% { opacity: 0; transform: translateY(-6px); } 100% { opacity: 0; } }
+
+  /* Utility row */
+  .util-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 32px 0; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cocoa); }
+  .util-row .left, .util-row .right { display: flex; gap: 18px; }
+
+  /* Split nav: categories | LOGO | categories — single horizontal row */
+  .head-split { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 16px 32px 22px; gap: 36px; border-bottom: 1px solid var(--rule); }
+  .head-split .nav-l, .head-split .nav-r { display: flex; gap: 32px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cocoa); }
+  .head-split .nav-l { justify-content: flex-end; }
+  .head-split .nav-l a:hover, .head-split .nav-r a:hover { color: var(--kraft); }
+  .wm { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 24px; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; color: var(--ink); white-space: nowrap; }
+
+  .hero { position: relative; height: 90vh; min-height: 640px; background: var(--linen) url("../refs/atmosphere/dried-1.jpg") center / cover no-repeat; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(46,38,28,0) 60%, rgba(46,38,28,0.18) 100%); pointer-events: none; }
+  .hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; text-align: center; padding: 24px; z-index: 1; text-shadow: 0 1px 24px rgba(46,38,28,0.4); }
+  .hero-overlay .eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; margin-bottom: 14px; opacity: 0.92; }
+  .hero-overlay h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(44px, 5.4vw, 84px); letter-spacing: 0.06em; line-height: 1.05; margin-bottom: 20px; }
+  .hero-overlay .sub { font-size: 13px; letter-spacing: 0.04em; line-height: 1.7; margin-bottom: 28px; max-width: 38ch; opacity: 0.95; }
+  .hero-overlay .cue { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+
+  /* 2-image gallery — wide + narrow split */
+  .gallery2 { display: grid; grid-template-columns: 2fr 1fr; gap: 0; }
+  .gallery2 .cell { aspect-ratio: 16 / 11; background-color: var(--linen); background-size: cover; background-position: center; }
+  .gallery2 .cell.tall { aspect-ratio: 4 / 5.5; }
+
+  .sec-title { text-align: center; padding: 90px 24px 48px; }
+  .sec-title .eyebrow { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--kraft); margin-bottom: 14px; }
+  .sec-title h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(28px, 3vw, 38px); letter-spacing: 0.04em; }
+
+  .shop-look { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 0 4px 100px; }
+  .shop-look .big { aspect-ratio: 4 / 5; background-color: var(--linen); background-size: cover; background-position: center; }
+  .shop-look .quad { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; }
+  .shop-look .quad .item { display: flex; flex-direction: column; }
+  .shop-look .quad .item .thumb { flex: 1; background-color: var(--linen); background-size: cover; background-position: center; transition: opacity 360ms ease; }
+  .shop-look .quad .item:hover .thumb { opacity: 0.92; }
+  .shop-look .quad .item .label { text-align: center; padding: 18px 8px 6px; background: var(--bone); }
+  .shop-look .quad .item .num { font-size: 9px; letter-spacing: 0.24em; color: var(--kraft); margin-bottom: 4px; }
+  .shop-look .quad .item .name { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 13px; letter-spacing: 0.02em; }
+  .shop-look .quad .item .price { font-size: 11px; color: var(--cocoa); letter-spacing: 0.04em; margin-top: 3px; }
+
+  .text-img { display: grid; grid-template-columns: 1fr 1fr; background: var(--cream); }
+  .text-img.reverse > :first-child { order: 2; }
+  .text-img .text { display: flex; flex-direction: column; justify-content: center; padding: 100px 80px; text-align: center; }
+  .text-img .text .eyebrow { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--kraft); margin-bottom: 18px; }
+  .text-img .text h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.4; margin-bottom: 26px; }
+  .text-img .text p { color: var(--cocoa); font-size: 13px; line-height: 1.85; max-width: 38ch; margin: 0 auto 24px; }
+  .text-img .text .link { align-self: center; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+  .text-img .img { aspect-ratio: 4 / 5; background-color: var(--linen); background-size: cover; background-position: center; }
+
+  .promo3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; padding: 80px 4px; }
+  .promo3 .cell { aspect-ratio: 1 / 1; background-color: var(--linen); background-size: cover; background-position: center; position: relative; }
+  .promo3 .cell.with-overlay { background-color: var(--kraft); display: flex; align-items: center; justify-content: center; background-image: none; }
+  .promo3 .cell .pill { background: rgba(46,38,28,0.7); color: #fff; padding: 12px 22px; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; }
+
+  /* Compact horizontal footer */
+  .foot { background: var(--bone); padding: 40px 60px 22px; border-top: 1px solid var(--rule); }
+  .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding-bottom: 22px; flex-wrap: wrap; }
+  .foot-wm { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .foot-links { display: flex; gap: 22px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cocoa); flex-wrap: wrap; justify-content: center; }
+  .foot-links a:hover { color: var(--kraft); }
+  .foot-social { display: flex; gap: 14px; font-size: 14px; color: var(--cocoa); }
+  .foot-bottom { border-top: 1px solid var(--rule); padding-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cocoa); }
+  .foot-bottom select { background: transparent; border: 1px solid var(--rule); padding: 5px 8px; font: inherit; color: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+  .pay { display: inline-flex; gap: 6px; }
+  .pay .chip { display: inline-block; padding: 3px 7px; border: 1px solid var(--rule); border-radius: 3px; font-size: 9px; letter-spacing: 0.06em; background: #fff; color: var(--cocoa); }
+
+  .sticky { position: fixed; bottom: 24px; left: 24px; width: 280px; background: var(--bone); border: 1px solid var(--rule); z-index: 100; display: flex; box-shadow: 0 14px 40px -16px rgba(46,38,28,0.18); }
+  .sticky .pic { width: 84px; background: url("../refs/instagram/wg1.jpg") center / cover; flex-shrink: 0; }
+  .sticky .body { padding: 18px 18px 16px; flex: 1; position: relative; }
+  .sticky .close { position: absolute; top: 8px; right: 10px; border: 0; background: transparent; font-size: 14px; line-height: 1; color: var(--cocoa); cursor: pointer; }
+  .sticky h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+  .sticky p { font-size: 10px; letter-spacing: 0.05em; line-height: 1.5; color: var(--cocoa); margin-bottom: 12px; }
+  .sticky .em { color: var(--ink); font-weight: 500; }
+  .sticky input { width: 100%; padding: 7px 8px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+  .sticky button { width: 100%; padding: 8px; border: 0; background: var(--ink); color: var(--bone); font-family: inherit; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer; }
+
+  @media (max-width: 900px) {
+    .ann .left, .ann .right { display: none; }
+    .util-row { padding: 10px 16px 0; font-size: 9px; }
+    .head-split { grid-template-columns: 1fr; padding: 12px 16px 16px; gap: 12px; text-align: center; }
+    .head-split .nav-l, .head-split .nav-r { justify-content: center; gap: 16px; font-size: 10px; flex-wrap: wrap; }
+    .wm { font-size: 18px; }
+    .hero { height: 80vh; min-height: 520px; }
+    .gallery2 { grid-template-columns: 1fr; }
+    .gallery2 .cell.tall { display: none; }
+    .shop-look { grid-template-columns: 1fr; padding: 0 4px 60px; }
+    .text-img { grid-template-columns: 1fr; }
+    .text-img .text { padding: 60px 24px; }
+    .promo3 { grid-template-columns: 1fr; padding: 50px 4px; }
+    .promo3 .cell:nth-child(3) { display: none; }
+    .foot-row { flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+    .foot-bottom { flex-direction: column; align-items: center; text-align: center; }
+    .pay { justify-content: center; flex-wrap: wrap; }
+    .foot { padding: 32px 24px 20px; }
+    .sticky { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ann">
+  <div class="left">Singapore (SGD $)</div>
+  <div class="ann-stage">
+    <span class="ann-msg">Quiet objects, made carefully</span>
+    <span class="ann-msg">Complimentary local shipping over SGD 80</span>
+    <span class="ann-msg">Earn 5 Gems for every $1 spent</span>
+  </div>
+  <div class="right">EN</div>
+</div>
+
+<div class="util-row">
+  <div class="left"><a href="#">Search</a><a href="#">Stockists</a></div>
+  <div class="right"><a href="#">Account</a><a href="#">Bag (0)</a></div>
+</div>
+
+<header class="head-split">
+  <div class="nav-l">
+    <a href="#">New Arrivals</a>
+    <a href="#">Charms</a>
+    <a href="#">Crystals</a>
+  </div>
+  <div class="wm">Wishing&nbsp;Garden</div>
+  <div class="nav-r">
+    <a href="#">Gifting</a>
+    <a href="#">Altar</a>
+    <a href="#">Journal</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-overlay">
+    <div class="eyebrow">Nº 01 · spring offering 2026</div>
+    <h1>Quiet objects,<br/>made carefully.</h1>
+    <div class="sub">handcrafted gemstone charms, talismans, and altar pieces — for the garden of one's heart</div>
+    <a class="cue" href="#">Browse the collection ›</a>
+  </div>
+</section>
+
+<!-- 2-image gallery — wide + narrow -->
+<section class="gallery2">
+  <div class="cell" style="background-image:url('../refs/atmosphere/jewelry-3.jpg')"></div>
+  <div class="cell tall" style="background-image:url('../refs/atmosphere/dried-2.jpg')"></div>
+</section>
+
+<div class="sec-title">
+  <div class="eyebrow">— Nº 01 · today's offerings</div>
+  <h2>From the bench, this week.</h2>
+</div>
+
+<section class="shop-look">
+  <div class="big" style="background-image:url('../refs/atmosphere/jewelry-4.jpg')"></div>
+  <div class="quad">
+    <div class="item">
+      <div class="thumb" style="background-image:url('../refs/instagram/wg1.jpg')"></div>
+      <div class="label"><div class="num">Nº 01</div><div class="name">Quartz Charm</div><div class="price">SGD 28</div></div>
+    </div>
+    <div class="item">
+      <div class="thumb" style="background-image:url('../refs/instagram/wg3.jpg')"></div>
+      <div class="label"><div class="num">Nº 02</div><div class="name">Amethyst Charm</div><div class="price">SGD 32</div></div>
+    </div>
+    <div class="item">
+      <div class="thumb" style="background-image:url('../refs/atmosphere/crystal-2.jpg')"></div>
+      <div class="label"><div class="num">Nº 03</div><div class="name">Citrine Charm</div><div class="price">SGD 30</div></div>
+    </div>
+    <div class="item">
+      <div class="thumb" style="background-image:url('../refs/atmosphere/dried-2.jpg')"></div>
+      <div class="label"><div class="num">Nº 04</div><div class="name">Garden Dish</div><div class="price">SGD 38</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="text-img">
+  <div class="text">
+    <div class="eyebrow">— Nº 02 · the practice</div>
+    <h3>Made by hand,<br/>in small batches,<br/>with chosen stones.</h3>
+    <p>Each charm is wrapped, threaded, and tied at our bench in Singapore. Quartz, amethyst, rose quartz, citrine — sourced from small suppliers we trust, and chosen for clarity, not perfection.</p>
+    <a class="link" href="#">Read the practice ›</a>
+  </div>
+  <div class="img" style="background-image:url('../refs/instagram/wg3.jpg')"></div>
+</section>
+
+<section class="promo3">
+  <div class="cell" style="background-image:url('../refs/atmosphere/dried-3.jpg')"></div>
+  <div class="cell with-overlay">
+    <div class="pill">Enjoy 10% off your first piece</div>
+  </div>
+  <div class="cell" style="background-image:url('../refs/instagram/wg2.jpg')"></div>
+</section>
+
+<section class="text-img reverse">
+  <div class="text">
+    <div class="eyebrow">— Nº 03 · the studio</div>
+    <h3>One pair of hands,<br/>one slow afternoon.</h3>
+    <p>Wishing Garden is a small studio in Singapore — every charm threaded, knotted, and finished where it began. No factory, no rush.</p>
+    <a class="link" href="#">Read the story ›</a>
+  </div>
+  <div class="img" style="background-image:url('../refs/instagram/wg4.jpg')"></div>
+</section>
+
+<footer class="foot">
+  <div class="foot-row">
+    <div class="foot-wm">Wishing&nbsp;Garden</div>
+    <div class="foot-links">
+      <a href="#">Shop</a>
+      <a href="#">Practice</a>
+      <a href="#">About</a>
+      <a href="#">Care</a>
+      <a href="#">Orders &amp; Delivery</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="foot-social"><a href="#">◌</a><a href="#">◑</a><a href="#">✉</a></div>
+  </div>
+  <div class="foot-bottom">
+    <select aria-label="Currency"><option>Singapore (SGD $)</option><option>USD $</option></select>
+    <span>© 2026 Wishing Garden — Singapore</span>
+    <div class="pay"><span class="chip">Visa</span><span class="chip">MC</span><span class="chip">Amex</span><span class="chip">Apple&nbsp;Pay</span><span class="chip">PayNow</span></div>
+  </div>
+</footer>
+
+<aside class="sticky">
+  <div class="pic"></div>
+  <div class="body">
+    <button class="close" aria-label="Close" onclick="this.closest('.sticky').style.display='none'">×</button>
+    <h5>Stay close</h5>
+    <p>letters from the bench — plus <span class="em">10% off your first piece</span>.</p>
+    <input type="email" placeholder="Enter your email" />
+    <button>Subscribe</button>
+  </div>
+</aside>
+
+</body>
+</html>
