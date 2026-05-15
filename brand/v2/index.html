@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Wishing Garden</title>
+<title>Wishing Garden — round two</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
@@ -77,26 +77,30 @@
     vertical-align: middle;
     margin-right: 14px;
   }
+  .back {
+    margin-top: 56px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--cocoa);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: border-color 240ms ease;
+  }
+  .back:hover { border-bottom-color: var(--cocoa); }
 </style>
 </head>
 <body>
   <div class="wm"><em>Wishing</em>&nbsp;Garden</div>
   <div class="eyebrow">Homepage Concepts</div>
-  <div class="round-label">round one</div>
+  <div class="round-label">round two</div>
   <ol>
-    <li><span class="num">01</span><a href="./concepts/a-editorial-soft.html">Editorial Soft</a></li>
-    <li><span class="num">02</span><a href="./concepts/b-garden-romantic.html">Garden Romantic</a></li>
-    <li><span class="num">03</span><a href="./concepts/c-apothecary-modern.html">Modern Apothecary</a></li>
-    <li><span class="num">04</span><a href="./concepts/d-talisman.html">Talisman</a></li>
-    <li><span class="num">05</span><a href="./concepts/e-heritage.html">Heritage</a></li>
+    <li><span class="num">01</span><a href="./01-editorial.html">Editorial Soft</a></li>
+    <li><span class="num">02</span><a href="./02-romantic.html">Garden Romantic</a></li>
+    <li><span class="num">03</span><a href="./03-apothecary.html">Modern Apothecary</a></li>
+    <li><span class="num">04</span><a href="./04-talisman.html">Talisman</a></li>
+    <li><span class="num">05</span><a href="./05-heritage.html">Heritage</a></li>
   </ol>
-  <div class="round-label">round two — merged</div>
-  <ol>
-    <li><span class="num">06</span><a href="./concepts/i-merged.html">wishingarden (merged)</a></li>
-  </ol>
-  <div class="round-label">round two — revisited</div>
-  <ol>
-    <li><span class="num">v2</span><a href="./v2/index.html">five new directions →</a></li>
-  </ol>
+  <a class="back" href="../index.html">← back to concepts</a>
 </body>
 </html>

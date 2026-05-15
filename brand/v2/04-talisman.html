@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>wishingarden — 04 talisman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --beige: #F7F4D5;
+    --beige-soft: #F1ECC6;
+    --beige-deep: #E8E2B0;
+    --dark: #0A3323;
+    --midnight: #105666;
+    --moss: #839958;
+    --rose: #D3968C;
+    --rule: rgba(10, 51, 35, 0.16);
+    --rule-mid: rgba(16, 86, 102, 0.32);
+    --serif: 'Playfair Display', 'Cormorant Garamond', serif;
+    --serif-italic: 'Cormorant Garamond', serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--beige); }
+  body {
+    color: var(--dark);
+    font-family: var(--serif-italic);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
+
+  .display {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(48px, 6.4vw, 96px); line-height: 1.04;
+    letter-spacing: -0.005em;
+  }
+  .display em { font-style: italic; font-weight: 400; color: var(--midnight); }
+  .display-md { font-family: var(--serif); font-size: clamp(28px, 3.4vw, 46px); line-height: 1.12; }
+  .body-serif { font-family: var(--serif-italic); font-weight: 400; font-size: 17px; line-height: 1.78; }
+  .ui {
+    font-family: var(--sans); font-weight: 400; font-size: 10px;
+    letter-spacing: 0.4em; text-transform: uppercase; line-height: 1.4;
+  }
+  .ui-sm { font-family: var(--sans); font-weight: 400; font-size: 9px; letter-spacing: 0.34em; text-transform: uppercase; }
+  .wordmark {
+    font-family: var(--serif); font-weight: 400; font-size: 20px;
+    letter-spacing: 0.2em; text-transform: lowercase;
+    line-height: 1;
+  }
+
+  /* banner */
+  .banner { background: var(--midnight); color: var(--beige); overflow: hidden; padding: 11px 0; }
+  .banner-track { display: flex; gap: 80px; animation: scroll 60s linear infinite; white-space: nowrap; }
+  .banner-track .ui::before { content: "✦"; margin-right: 28px; opacity: 0.9; letter-spacing: 0; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* header — perfectly symmetric */
+  header { background: var(--beige); border-bottom: 1px solid var(--rule-mid); }
+  .utility {
+    display: flex; justify-content: center; gap: 30px; align-items: center;
+    padding: 12px 5vw 10px;
+    opacity: 0.78; color: var(--midnight);
+  }
+  .utility a:hover { color: var(--dark); }
+  .icon { display: inline-grid; place-items: center; width: 20px; height: 20px; }
+  .icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+
+  nav {
+    padding: 30px 5vw 36px;
+    display: flex; flex-direction: column; align-items: center; gap: 28px;
+  }
+  .brand-mark { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .brand-mark .sigil { width: 76px; height: 76px; color: var(--midnight); margin-bottom: 16px; }
+  .brand-mark .wordmark { font-size: 24px; letter-spacing: 0.3em; }
+  .brand-mark .sub { color: var(--midnight); margin-top: 6px; opacity: 0.7; }
+  .nav-row { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+  .nav-row a {
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease, color 200ms ease;
+  }
+  .nav-row a:hover { border-bottom-color: var(--midnight); color: var(--midnight); }
+
+  /* HERO — axial column */
+  .hero {
+    text-align: center;
+    padding: 100px 6vw 70px;
+    max-width: 900px; margin: 0 auto;
+    position: relative;
+  }
+  .hero .frame {
+    border: 1px solid var(--rule-mid);
+    padding: 50px 40px 40px;
+    position: relative;
+  }
+  .hero .frame::before, .hero .frame::after {
+    content: "✦";
+    position: absolute; top: -10px; font-family: var(--serif);
+    font-size: 18px; color: var(--midnight); background: var(--beige); padding: 0 10px;
+  }
+  .hero .frame::before { left: 20px; }
+  .hero .frame::after { right: 20px; }
+  .hero .crumb { color: var(--midnight); margin-bottom: 24px; }
+  .hero .display { margin-bottom: 24px; max-width: 18ch; margin-left: auto; margin-right: auto; }
+  .hero .lede { font-family: var(--serif-italic); font-style: italic; font-size: 19px; line-height: 1.7; max-width: 46ch; margin: 0 auto 30px; opacity: 0.88; }
+  .hero .star-row {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    color: var(--midnight); opacity: 0.7;
+    margin-top: 20px;
+  }
+  .hero .star-row .line { width: 50px; height: 1px; background: currentColor; }
+
+  /* hero photo */
+  .hero-photo {
+    margin: 0 auto;
+    width: min(1200px, 92vw);
+    aspect-ratio: 16/9;
+    background: var(--beige-deep);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--rule-mid);
+  }
+  .hero-photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(10,51,35,0.16));
+  }
+  .hero-photo .caption {
+    position: absolute; bottom: 20px; left: 24px;
+    color: var(--beige); z-index: 2; opacity: 0.9;
+  }
+
+  /* WORKSHOP — symmetric ritual */
+  .workshop {
+    margin: 110px auto;
+    max-width: 900px;
+    padding: 0 6vw;
+    text-align: center;
+  }
+  .workshop .sigil-big {
+    width: 64px; height: 64px;
+    margin: 0 auto 20px;
+    color: var(--midnight);
+  }
+  .workshop .crumb { color: var(--midnight); margin-bottom: 18px; }
+  .workshop .title { font-family: var(--serif); font-size: clamp(36px, 4.4vw, 60px); margin-bottom: 24px; max-width: 18ch; margin-left: auto; margin-right: auto; }
+  .workshop .title em { font-style: italic; color: var(--midnight); }
+  .workshop .desc { font-family: var(--serif-italic); font-size: 19px; line-height: 1.7; max-width: 50ch; margin: 0 auto 36px; opacity: 0.88; font-style: italic; }
+  .talisman-cta {
+    display: inline-flex; align-items: center; gap: 16px;
+    padding: 18px 38px;
+    background: var(--midnight); color: var(--beige);
+    font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.36em; text-transform: uppercase;
+    transition: background 240ms ease, gap 240ms ease;
+  }
+  .talisman-cta::before { content: "✦"; font-family: var(--serif); font-size: 13px; letter-spacing: 0; }
+  .talisman-cta::after { content: "→"; font-size: 14px; letter-spacing: 0; }
+  .talisman-cta:hover { background: var(--dark); gap: 22px; }
+
+  .ritual {
+    margin: 70px auto 0;
+    max-width: 980px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+  .ritual .step .sym { font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--midnight); margin-bottom: 14px; }
+  .ritual .step h4 { font-family: var(--serif); font-size: 22px; margin-bottom: 10px; }
+  .ritual .step p { font-family: var(--serif-italic); font-size: 15px; line-height: 1.65; opacity: 0.86; }
+
+  /* placeholder section heading */
+  .sec-head { text-align: center; padding: 130px 6vw 50px; }
+  .sec-head .sym { font-family: var(--serif); font-size: 22px; color: var(--midnight); margin-bottom: 14px; }
+  .sec-head .crumb { color: var(--midnight); margin-bottom: 16px; }
+  .sec-head .title { font-family: var(--serif); font-size: clamp(34px, 4.2vw, 56px); max-width: 18ch; margin: 0 auto; }
+  .sec-head .title em { font-style: italic; color: var(--midnight); }
+  .sec-head .rule { width: 50px; height: 1px; background: var(--dark); opacity: 0.45; margin: 22px auto 0; }
+
+  /* arrivals — centered axial */
+  .arrivals {
+    margin: 20px auto 130px;
+    max-width: 1100px;
+    padding: 0 6vw;
+    text-align: center;
+  }
+  .arrivals .photo { aspect-ratio: 4/5; background: var(--beige-deep); margin: 0 auto 40px; max-width: 540px; border: 1px solid var(--rule-mid); }
+  .arrivals .desc { font-family: var(--serif-italic); font-style: italic; font-size: 18px; max-width: 44ch; margin: 0 auto 30px; opacity: 0.88; }
+  .placeholder-badge {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 12px 24px;
+    border: 1px solid var(--rule-mid);
+    color: var(--midnight);
+  }
+  .placeholder-badge::before, .placeholder-badge::after { content: "✦"; font-family: var(--serif); font-size: 11px; opacity: 0.7; }
+
+  /* collection */
+  .collection {
+    background: var(--beige-soft);
+    padding: 0 6vw 130px;
+    border-top: 1px solid var(--rule-mid);
+    border-bottom: 1px solid var(--rule-mid);
+  }
+  .coll-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .coll-item {
+    text-align: center;
+    padding: 24px;
+    border: 1px solid var(--rule-mid);
+    background: var(--beige);
+  }
+  .coll-item .photo { aspect-ratio: 1/1; background: var(--beige-deep); margin-bottom: 22px; }
+  .coll-item .sym { font-family: var(--serif); color: var(--midnight); margin-bottom: 8px; }
+  .coll-item .name { font-family: var(--serif); font-size: 22px; margin-bottom: 12px; }
+  .coll-item .soon { color: var(--midnight); }
+
+  /* popups */
+  .popups {
+    padding: 0 6vw 130px;
+    text-align: center;
+    max-width: 900px; margin: 0 auto;
+  }
+  .popups .photo { aspect-ratio: 16/9; background: var(--beige-deep); margin: 0 auto 40px; border: 1px solid var(--rule-mid); }
+  .popups .desc { font-family: var(--serif-italic); font-style: italic; font-size: 18px; max-width: 44ch; margin: 0 auto 26px; opacity: 0.88; }
+
+  /* letter */
+  .letter {
+    background: var(--beige-soft);
+    text-align: center;
+    padding: 140px 6vw 150px;
+    border-top: 1px solid var(--rule-mid);
+  }
+  .letter .sigil-big { width: 64px; height: 64px; margin: 0 auto 22px; color: var(--midnight); }
+  .letter .crumb { color: var(--midnight); margin-bottom: 28px; }
+  .letter .display { max-width: 24ch; margin: 0 auto 32px; }
+  .letter .body-serif { max-width: 56ch; margin: 0 auto; opacity: 0.88; }
+
+  /* bench */
+  .bench {
+    padding: 140px 6vw;
+    text-align: center; max-width: 900px; margin: 0 auto;
+  }
+  .bench .photo { aspect-ratio: 16/10; background: var(--beige-deep); margin: 0 auto 40px; border: 1px solid var(--rule-mid); }
+  .bench .display-md { margin-bottom: 24px; max-width: 22ch; margin-left: auto; margin-right: auto; }
+  .bench .body-serif { max-width: 50ch; margin: 0 auto; opacity: 0.88; }
+
+  /* footer */
+  footer { background: var(--beige-soft); padding: 90px 6vw 40px; border-top: 1px solid var(--rule-mid); }
+  .foot-top {
+    text-align: center; padding-bottom: 70px; border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .foot-top .sigil-big { width: 48px; height: 48px; color: var(--midnight); }
+  .foot-top .wordmark { font-family: var(--serif); font-size: 22px; letter-spacing: 0.26em; }
+  .foot-top .colophon { font-family: var(--serif-italic); font-style: italic; max-width: 36ch; opacity: 0.78; }
+  .foot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px; max-width: 1400px; margin: 60px auto 0; }
+  footer h4 { margin-bottom: 20px; color: var(--midnight); text-align: center; }
+  footer .col { text-align: center; }
+  footer a { display: block; padding: 6px 0; font-family: var(--sans); font-size: 12px; transition: color 200ms ease; }
+  footer a:hover { color: var(--midnight); }
+  footer .subscribe input {
+    width: 100%; padding: 10px 0; text-align: center;
+    background: transparent; border: none; border-bottom: 1px solid var(--rule-mid);
+    font-family: var(--sans); font-size: 14px; color: var(--dark);
+  }
+  footer .subscribe input:focus { outline: none; border-bottom-color: var(--midnight); }
+  footer .subscribe button {
+    margin-top: 16px; padding: 12px 24px;
+    background: var(--midnight); color: var(--beige);
+    font-family: var(--sans); font-weight: 500; font-size: 10px; letter-spacing: 0.36em; text-transform: uppercase;
+    transition: background 220ms ease;
+  }
+  footer .subscribe button:hover { background: var(--dark); }
+  .footstrip {
+    margin-top: 70px; padding-top: 24px; border-top: 1px solid var(--rule-mid);
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 30px;
+    opacity: 0.7;
+  }
+
+  /* MODAL */
+  .wander { position: fixed; inset: 0; z-index: 100; background: rgba(10,51,35,0.6); display: none; align-items: center; justify-content: center; }
+  .wander.is-open { display: flex; padding: 40px 4vw; }
+  .wander-panel {
+    width: min(820px, 100%); max-height: 92vh; overflow-y: auto;
+    background: var(--beige);
+    border: 1px solid var(--rule-mid);
+    animation: fade 320ms ease;
+    padding: 40px 48px 48px;
+    position: relative;
+  }
+  @keyframes fade { from { transform: scale(0.97); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .wander-close {
+    position: absolute; top: 18px; right: 18px;
+    width: 34px; height: 34px;
+    border: 1px solid var(--rule-mid); color: var(--midnight);
+    display: grid; place-items: center;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .wander-close:hover { background: var(--midnight); color: var(--beige); }
+  .wander-head { text-align: center; padding-bottom: 30px; border-bottom: 1px solid var(--rule); }
+  .wander-head .sigil { width: 52px; height: 52px; margin: 0 auto 14px; color: var(--midnight); }
+  .wander-head .crumb { color: var(--midnight); margin-bottom: 12px; }
+  .wander-head .title { font-family: var(--serif); font-size: clamp(28px,3.2vw,42px); }
+  .wander-head .title em { font-style: italic; color: var(--midnight); }
+
+  .gardens {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .gardens .card {
+    text-align: center;
+    border: 1px solid var(--rule-mid);
+    padding: 24px;
+    background: var(--beige);
+    cursor: pointer;
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+  .gardens .card:hover { border-color: var(--midnight); }
+  .gardens .card.selected { border-color: var(--midnight); background: rgba(16,86,102,0.08); }
+  .gardens .card .sym { font-family: var(--serif); color: var(--midnight); font-size: 18px; margin-bottom: 10px; }
+  .gardens .card .name { font-family: var(--serif); font-size: 24px; margin-bottom: 14px; }
+  .gardens .card .priceline { display: flex; justify-content: center; align-items: baseline; gap: 12px; font-family: var(--serif); }
+  .gardens .card .priceline .now { font-size: 26px; }
+  .gardens .card .priceline .was { font-size: 14px; opacity: 0.5; text-decoration: line-through; }
+  .gardens .card .tag { display: block; margin-top: 12px; color: var(--midnight); font-family: var(--sans); font-size: 9px; letter-spacing: 0.34em; text-transform: uppercase; }
+
+  .booking { padding-top: 24px; }
+  .row {
+    display: grid; grid-template-columns: 140px 1fr;
+    align-items: center; gap: 22px; padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .row:first-of-type { border-top: 1px solid var(--rule); }
+  .row .label { color: var(--midnight); }
+  .row input[type="text"], .row input[type="date"] {
+    width: 100%; background: transparent; border: 0; padding: 6px 0;
+    font-family: var(--sans); font-size: 15px; color: var(--dark);
+    border-bottom: 1px solid transparent;
+  }
+  .row input:focus { outline: none; border-bottom-color: var(--midnight); }
+  .row input::placeholder { color: var(--dark); opacity: 0.35; }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt {
+    padding: 10px 18px; border: 1px solid var(--rule-mid);
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--dark);
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+  }
+  .opt:hover { border-color: var(--midnight); }
+  .opt.active { background: var(--midnight); color: var(--beige); border-color: var(--midnight); }
+
+  .deposit {
+    margin-top: 30px; padding: 18px;
+    text-align: center;
+    background: rgba(16,86,102,0.08);
+    border: 1px solid var(--rule-mid);
+    font-family: var(--serif-italic); font-style: italic; font-size: 15px;
+  }
+  .submit {
+    margin-top: 26px; width: 100%;
+    padding: 18px 22px;
+    background: var(--midnight); color: var(--beige);
+    font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.36em; text-transform: uppercase;
+    display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+    transition: background 220ms ease, gap 220ms ease;
+  }
+  .submit::after { content: "→"; font-size: 14px; letter-spacing: 0; }
+  .submit:hover { background: var(--dark); gap: 22px; }
+
+  @media (max-width: 900px) {
+    .ritual, .coll-grid, .gardens { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr; gap: 36px; }
+    .row { grid-template-columns: 1fr; gap: 10px; padding: 16px 0; }
+    .wander-panel { padding: 30px 22px 36px; }
+    .hero .frame { padding: 36px 22px 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="banner-track">
+    <span class="ui">complimentary post over $80</span>
+    <span class="ui">letters from the garden, every new moon</span>
+    <span class="ui">workshops opening · june 2026</span>
+    <span class="ui">complimentary post over $80</span>
+    <span class="ui">letters from the garden, every new moon</span>
+    <span class="ui">workshops opening · june 2026</span>
+  </div>
+</div>
+
+<header>
+  <div class="utility ui">
+    <a href="#">whatsapp · soon</a>
+    <a href="#">contact us</a>
+    <a href="#" class="icon" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a>
+    <a href="#" class="icon" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></a>
+    <a href="#" class="icon" aria-label="Basket"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.5 11a2 2 0 0 1-2 1.7H8.5A2 2 0 0 1 6.5 19L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+  </div>
+
+  <nav>
+    <a class="brand-mark" href="./index.html">
+      <svg class="sigil" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+        <circle cx="28" cy="28" r="20" stroke-dasharray="1 4" opacity="0.65"/>
+        <circle cx="28" cy="28" r="6"/>
+        <path d="M28 22 V8 M28 34 V50 M22 28 H8 M34 28 H50 M23.5 23.5 L14 14 M32.5 32.5 L42 42 M32.5 23.5 L42 14 M23.5 32.5 L14 42"/>
+      </svg>
+      <div class="wordmark">wishingarden</div>
+      <div class="sub ui-sm">a small ritual, slowly</div>
+    </a>
+    <div class="nav-row ui">
+      <a href="#arrivals">new arrivals</a>
+      <a href="#workshop">workshops</a>
+      <a href="#">trinkets</a>
+      <a href="#">gemstones</a>
+      <a href="#">bookmarks</a>
+      <a href="#">suncatchers</a>
+      <a href="#">gifting</a>
+      <a href="#bench">our philosophy</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="frame">
+    <div class="crumb ui">— a quiet talisman</div>
+    <h1 class="display">Made by hand, with <em>chosen stones.</em></h1>
+    <p class="lede">Handcrafted gemstone trinkets on brass — small companions, carried close, finished by candlelight.</p>
+    <div class="star-row" aria-hidden="true"><span class="line"></span><span>✦</span><span class="line"></span></div>
+  </div>
+</section>
+
+<div class="hero-photo">
+  <img src="https://picsum.photos/seed/wgv2tal-hero/2400/1350" alt="A talisman in the garden" />
+  <div class="caption ui">— at the bench, singapore</div>
+</div>
+
+<!-- WORKSHOP -->
+<section class="workshop" id="workshop">
+  <svg class="sigil-big" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+    <circle cx="28" cy="28" r="20" stroke-dasharray="1 4" opacity="0.7"/>
+    <circle cx="28" cy="28" r="5"/>
+    <path d="M28 22 V8 M28 34 V50 M22 28 H8 M34 28 H50"/>
+  </svg>
+  <div class="crumb ui">— section i · wishingarden dome workshop</div>
+  <h2 class="title">A hands-on workshop to craft your own <em>wishingarden.</em></h2>
+  <p class="desc">"Therapeutic, gentle, and yours to shape." An afternoon at the bench — tea poured, music low, hands quiet — until your garden is finished and carried home.</p>
+  <button class="talisman-cta" data-wander>wander in</button>
+
+  <div class="ritual">
+    <div class="step">
+      <div class="sym">i.</div>
+      <h4>arrive</h4>
+      <p>Tea is poured. We talk a little about your stones and the shape of the day.</p>
+    </div>
+    <div class="step">
+      <div class="sym">ii.</div>
+      <h4>choose</h4>
+      <p>From our library: quartz, amethyst, fluorite, rose. Twenty or so minutes of choosing.</p>
+    </div>
+    <div class="step">
+      <div class="sym">iii.</div>
+      <h4>carry home</h4>
+      <p>Your wishingarden, wrapped in deckle-edge paper and jute. Tea again, if you'd like.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARRIVALS placeholder -->
+<div class="sec-head">
+  <div class="sym" aria-hidden="true">✦</div>
+  <div class="crumb ui">— section ii · new arrivals</div>
+  <h2 class="title">lily of <em>the valley</em></h2>
+  <div class="rule"></div>
+</div>
+<section class="arrivals" id="arrivals">
+  <div class="photo"></div>
+  <p class="desc">Wearable blooms from our garden — an opening edition of twenty pieces. Photographs are gathering, the pieces are still on the bench.</p>
+  <span class="placeholder-badge ui-sm">Awakening. Soon.</span>
+</section>
+
+<!-- COLLECTION placeholder -->
+<section class="collection">
+  <div class="sec-head">
+    <div class="sym" aria-hidden="true">✦</div>
+    <div class="crumb ui">— section iii · the collection</div>
+    <h2 class="title">small things, made carefully</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="coll-grid">
+    <div class="coll-item">
+      <div class="photo"></div>
+      <div class="sym ui-sm">no. 01</div>
+      <div class="name">925 silver</div>
+      <div class="soon ui-sm">A space unfolds. Stay curious.</div>
+    </div>
+    <div class="coll-item">
+      <div class="photo"></div>
+      <div class="sym ui-sm">no. 02</div>
+      <div class="name">metal bookmarks</div>
+      <div class="soon ui-sm">A space unfolds. Stay curious.</div>
+    </div>
+    <div class="coll-item">
+      <div class="photo"></div>
+      <div class="sym ui-sm">no. 03</div>
+      <div class="name">keychains</div>
+      <div class="soon ui-sm">A space unfolds. Stay curious.</div>
+    </div>
+  </div>
+</section>
+
+<!-- POPUPS placeholder -->
+<div class="sec-head">
+  <div class="sym" aria-hidden="true">✦</div>
+  <div class="crumb ui">— section iv · pop-ups</div>
+  <h2 class="title">find us, <em>occasionally</em></h2>
+  <div class="rule"></div>
+</div>
+<section class="popups">
+  <div class="photo"></div>
+  <p class="desc">In gardens of our own choosing. A schedule unfolds — quietly, on the new moon.</p>
+  <span class="placeholder-badge ui-sm">A space unfolds. Stay curious.</span>
+</section>
+
+<!-- LETTER -->
+<section class="letter">
+  <svg class="sigil-big" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+    <circle cx="28" cy="28" r="4"/>
+    <path d="M28 24 V14 M28 32 V42 M24 28 H14 M32 28 H42"/>
+  </svg>
+  <div class="crumb ui">— a letter from the garden —</div>
+  <h2 class="display"><em>"Some things, we believe, are best made slowly &amp; intentionally."</em></h2>
+  <p class="body-serif">Handcrafted gemstone charms on brass, presented on deckle-edge paper cards embossed with our flower-and-star mark. Made in small batches, in a garden of our own.</p>
+</section>
+
+<!-- BENCH -->
+<section class="bench" id="bench">
+  <div class="photo"></div>
+  <div class="crumb ui">— our small practice</div>
+  <h2 class="display-md">Made by hand, in small batches, <em>with chosen stones.</em></h2>
+  <p class="body-serif">Each trinket handcrafted at our bench in Singapore. (wishingarden domes, too.) Some things, we believe, are best made slowly &amp; intentionally.</p>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <svg class="sigil-big" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.4">
+      <circle cx="28" cy="28" r="5"/>
+      <path d="M28 22 V8 M28 34 V50 M22 28 H8 M34 28 H50"/>
+    </svg>
+    <div class="wordmark">wishingarden</div>
+    <div class="colophon">A small studio in Singapore. Handcrafted gemstone trinkets, slowly &amp; with intention.</div>
+  </div>
+  <div class="foot-grid">
+    <div class="col">
+      <h4 class="ui">links</h4>
+      <a href="#">archive sale</a>
+      <a href="#">orders &amp; delivery</a>
+      <a href="#">returns</a>
+      <a href="#">jewellery care</a>
+    </div>
+    <div class="col">
+      <h4 class="ui">the garden</h4>
+      <a href="#arrivals">new arrivals</a>
+      <a href="#workshop">workshops</a>
+      <a href="#">trinkets</a>
+      <a href="#">gemstones</a>
+    </div>
+    <div class="col">
+      <h4 class="ui">find us</h4>
+      <a href="#">instagram</a>
+      <a href="#">whatsapp · soon</a>
+      <a href="#">contact</a>
+    </div>
+    <div class="col">
+      <h4 class="ui">letters</h4>
+      <form class="subscribe" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="your email" />
+        <button type="submit">subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footstrip ui">
+    <span>© wishingarden 2026 · singapore (sgd $)</span>
+    <span>instagram · @wishingarden</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="wander" id="wander" aria-hidden="true">
+  <div class="wander-panel" role="dialog" aria-modal="true">
+    <button class="wander-close" data-wander-close aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="wander-head">
+      <svg class="sigil" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+        <circle cx="28" cy="28" r="5"/>
+        <path d="M28 22 V8 M28 34 V50 M22 28 H8 M34 28 H50"/>
+      </svg>
+      <div class="crumb ui">— wishingarden dome workshop</div>
+      <h2 class="title">Choose your <em>garden</em>.</h2>
+    </div>
+
+    <div class="gardens">
+      <div class="card selected" data-garden="core">
+        <div class="sym ui-sm">no. 01</div>
+        <div class="name">core garden</div>
+        <div class="priceline">
+          <span class="now">$75</span>
+          <span class="was">$97</span>
+        </div>
+        <div class="tag">pre-launch</div>
+      </div>
+      <div class="card" data-garden="statement">
+        <div class="sym ui-sm">no. 02</div>
+        <div class="name">statement garden</div>
+        <div class="priceline">
+          <span class="now">$127</span>
+          <span class="was">$158</span>
+        </div>
+        <div class="tag">pre-launch</div>
+      </div>
+    </div>
+
+    <form class="booking" onsubmit="event.preventDefault(); alert('Reserved (prototype) — Jamie will be in touch.');">
+      <div class="row">
+        <div class="label ui">your name</div>
+        <div><input type="text" placeholder="e.g. Mei" required /></div>
+      </div>
+      <div class="row">
+        <div class="label ui">notify me by</div>
+        <div class="opts" data-group="notify">
+          <button type="button" class="opt active" data-val="whatsapp">whatsapp</button>
+          <button type="button" class="opt" data-val="email">email</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label ui">which garden</div>
+        <div class="opts" data-group="garden">
+          <button type="button" class="opt active" data-val="core">core garden</button>
+          <button type="button" class="opt" data-val="statement">statement garden</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label ui">date</div>
+        <div><input type="date" required /></div>
+      </div>
+      <div class="row">
+        <div class="label ui">time slot</div>
+        <div class="opts" data-group="time">
+          <button type="button" class="opt" data-val="9-11">9 – 11 am</button>
+          <button type="button" class="opt active" data-val="1-3">1 – 3 pm</button>
+          <button type="button" class="opt" data-val="4-6">4 – 6 pm</button>
+        </div>
+      </div>
+
+      <div class="deposit">✦ &nbsp; A $20 deposit per wishingarden is required to secure your date and slot.</div>
+      <button class="submit" type="submit">reserve a seat</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('wander');
+  document.querySelectorAll('[data-wander]').forEach(b => b.addEventListener('click', () => {
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden';
+  }));
+  document.querySelectorAll('[data-wander-close]').forEach(b => b.addEventListener('click', closeWander));
+  modal.addEventListener('click', e => { if (e.target === modal) closeWander(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWander(); });
+  function closeWander () { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+
+  document.querySelectorAll('.opts').forEach(group => {
+    group.addEventListener('click', e => {
+      const opt = e.target.closest('.opt'); if (!opt) return;
+      group.querySelectorAll('.opt').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      if (group.dataset.group === 'garden') {
+        document.querySelectorAll('.gardens .card').forEach(c => c.classList.toggle('selected', c.dataset.garden === opt.dataset.val));
+      }
+    });
+  });
+  document.querySelectorAll('.gardens .card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.gardens .card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const group = document.querySelector('.opts[data-group="garden"]');
+      group.querySelectorAll('.opt').forEach(o => o.classList.toggle('active', o.dataset.val === card.dataset.garden));
+    });
+  });
+</script>
+
+</body>
+</html>
